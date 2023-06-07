@@ -6,3 +6,4 @@ pandas
 japanize_matplotlib
 datetime
 scipy
+numpy

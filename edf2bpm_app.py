@@ -10,16 +10,40 @@ from datetime import datetime,timedelta
 from scipy.signal import resample
 import matplotlib.dates as mdates
 
-
-
-uploaded_file = st.file_uploader("File upload")
+import streamlit as st
+import pyedflib
+import numpy as np
 
 
 
 '''
 BPS(Bit Per Second)1秒あたりでリサンプリングする!
 '''
-if uploaded_file:
+
+
+def read_edf_file(file):
+    f = pyedflib.EdfReader(file)
+    n = f.signals_in_file
+    signal_labels = f.getSignalLabels()
+    sigbufs = np.zeros((n, f.getNSamples()[0]))
+    for i in np.arange(n):
+        sigbufs[i, :] = f.readSignal(i)
+    return sigbufs, signal_labels
+
+st.title("EDFファイルアップロード")
+
+uploaded_file = st.file_uploader("EDFファイルを選択してください", type=["edf"])
+
+if uploaded_file is not None:
+    st.write("ファイルを読み込んでいます...")
+    signals, labels = read_edf_file(uploaded_file)
+    st.write("ファイルの読み込みが完了しました。")
+    st.write("信号ラベル: ", labels)
+    st.write("信号データ: ", signals)
+
+
+
+    
     #基本設定
     filename =  StringIO(uploaded_file.getvalue())
     # 開始日時と終了日時
