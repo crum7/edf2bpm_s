@@ -21,7 +21,7 @@ BPS(Bit Per Second)1秒あたりでリサンプリングする!
 '''
 if uploaded_file:
     #基本設定
-    filename =  StringIO(uploaded_file.getvalue().decode("utf-8"))
+    filename =  StringIO(uploaded_file.getvalue())
     # 開始日時と終了日時
     start_datetime = datetime(2023, 6, 5, 22, 7, 40)
     end_datetime = datetime(2023, 6, 5, 22, 48, 1)
