@@ -15,7 +15,6 @@ BPS(Bit Per Second)1秒あたりでリサンプリングする!
 '''
 st.title("EDFファイルから心拍数を表示")
 
-uploaded_file = st.file_uploader("EDFファイルを選択してください", type=["edf"])
 # 開始日時と終了日時
 with st.expander("開始日時の設定"):
     start_year = st.text_input('start year')
@@ -33,7 +32,8 @@ with st.expander("終了日時の設定"):
     end_minute = st.text_input('end minute')
     end_second = st.text_input('end second')
 
-
+st.text('上の設定をすべて終えた後にアップロード')
+uploaded_file = st.file_uploader("EDFファイルを選択してください", type=["edf"])
 
 if uploaded_file is not None:
    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
