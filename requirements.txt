@@ -7,4 +7,3 @@ japanize_matplotlib
 datetime
 scipy
 numpy
-tempfile
