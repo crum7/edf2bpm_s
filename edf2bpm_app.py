@@ -19,7 +19,7 @@ uploaded_file = st.file_uploader("EDFファイルを選択してください", t
 if uploaded_file is not None:
 
     #基本設定
-    filename = uploaded_file.nam
+    filename = uploaded_file.name
     # 開始日時と終了日時
     start_datetime = datetime(2023, 6, 5, 22, 7, 40)
     end_datetime = datetime(2023, 6, 5, 22, 48, 1)
