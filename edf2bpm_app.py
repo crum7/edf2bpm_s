@@ -14,6 +14,7 @@ import tempfile
 BPS(Bit Per Second)1秒あたりでリサンプリングする!
 '''
 st.title("EDFファイルから心拍数を表示")
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # 開始日時と終了日時
 with st.expander("開始日時の設定"):
