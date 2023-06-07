@@ -7,4 +7,4 @@ japanize_matplotlib
 datetime
 scipy
 numpy
-import tempfile
+tempfile
