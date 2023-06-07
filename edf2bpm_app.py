@@ -16,7 +16,13 @@ BPS(Bit Per Second)1秒あたりでリサンプリングする!
 st.title("EDFファイルから心拍数を表示")
 
 uploaded_file = st.file_uploader("EDFファイルを選択してください", type=["edf"])
-
+# 開始日時と終了日時
+start_year = st.text_input('start year')
+start_month = st.text_input('start month')
+start_day = st.text_input('start day')
+start_hour = st.text_input('start hour')
+start_minute = st.text_input('start minute')
+start_second = st.text_input('start second')
 
 if uploaded_file is not None:
    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
@@ -25,13 +31,10 @@ if uploaded_file is not None:
 
         #基本設定
         filename = tmp_file.name
-        # 開始日時と終了日時
-        d = st.date_input(
-        "開始日時",datetime.date(2023, 6,7))
-        d_list = []
 
-        start_datetime = datetime(datetime.date, 22, 7, 40)
-        end_datetime = datetime(datetime.date, 22, 48, 1)
+
+        start_datetime = datetime(int(start_year), int(start_month), int(start_day), int(start_hour), int(start_minute), int(start_second))
+        end_datetime = datetime(2023, 6, 5, 22, 48, 1)
 
 
         file = pyedflib.EdfReader(filename)
