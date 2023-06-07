@@ -17,12 +17,23 @@ st.title("EDFファイルから心拍数を表示")
 
 uploaded_file = st.file_uploader("EDFファイルを選択してください", type=["edf"])
 # 開始日時と終了日時
-start_year = st.text_input('start year')
-start_month = st.text_input('start month')
-start_day = st.text_input('start day')
-start_hour = st.text_input('start hour')
-start_minute = st.text_input('start minute')
-start_second = st.text_input('start second')
+with st.expander("開始日時の設定"):
+    start_year = st.text_input('start year')
+    start_month = st.text_input('start month')
+    start_day = st.text_input('start day')
+    start_hour = st.text_input('start hour')
+    start_minute = st.text_input('start minute')
+    start_second = st.text_input('start second')
+
+with st.expander("終了日時の設定"):
+    end_year = st.text_input('end year')
+    end_month = st.text_input('end month')
+    end_day = st.text_input('end day')
+    end_hour = st.text_input('end hour')
+    end_minute = st.text_input('end minute')
+    end_second = st.text_input('end second')
+
+
 
 if uploaded_file is not None:
    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
@@ -34,7 +45,7 @@ if uploaded_file is not None:
 
 
         start_datetime = datetime(int(start_year), int(start_month), int(start_day), int(start_hour), int(start_minute), int(start_second))
-        end_datetime = datetime(2023, 6, 5, 22, 48, 1)
+        end_datetime = datetime(int(end_year), int(end_month), int(end_day), int(end_hour), int(end_minute), int(end_second))
 
 
         file = pyedflib.EdfReader(filename)
