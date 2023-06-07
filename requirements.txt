@@ -1,7 +1,7 @@
 streamlit
-pyedflib
+pyEDFlib
 biosppy
-matplotlib.pyplot
+matplotlib
 pandas
 japanize_matplotlib
 datetime
