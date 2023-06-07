@@ -1,5 +1,3 @@
-from io import StringIO
-import streamlit as st
 import pyedflib
 import biosppy
 import matplotlib.pyplot as plt
@@ -9,45 +7,19 @@ import japanize_matplotlib
 from datetime import datetime,timedelta
 from scipy.signal import resample
 import matplotlib.dates as mdates
-import tempfile
 import streamlit as st
-import pyedflib
-import numpy as np
-
-
 
 '''
 BPS(Bit Per Second)1秒あたりでリサンプリングする!
 '''
-
-
-def read_edf_file(file):
-    f = pyedflib.EdfReader(file)
-    n = f.signals_in_file
-    signal_labels = f.getSignalLabels()
-    sigbufs = np.zeros((n, f.getNSamples()[0]))
-    for i in np.arange(n):
-        sigbufs[i, :] = f.readSignal(i)
-    return sigbufs, signal_labels
-
-st.title("EDFファイルアップロード")
+st.title("EDFファイルから心拍数を表示")
 
 uploaded_file = st.file_uploader("EDFファイルを選択してください", type=["edf"])
 
 if uploaded_file is not None:
-    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-        tmp_file.write(uploaded_file.getvalue())
-        tmp_file.flush()
-        st.write("ファイルを読み込んでいます...")
-        signals, labels = read_edf_file(tmp_file.name)
-        st.write("ファイルの読み込みが完了しました。")
-        st.write("信号ラベル: ", labels)
-        st.write("信号データ: ", signals)
 
-
-    
     #基本設定
-    filename =  StringIO(uploaded_file.getvalue())
+    filename = uploaded_file.nam
     # 開始日時と終了日時
     start_datetime = datetime(2023, 6, 5, 22, 7, 40)
     end_datetime = datetime(2023, 6, 5, 22, 48, 1)
@@ -135,4 +107,4 @@ if uploaded_file is not None:
     ax.set_xlabel('time')
     #各subplotにyラベルを追加
     ax.set_ylabel('bpm(1m)')
-    plt.show()
+    st.pyplot()
