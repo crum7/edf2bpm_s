@@ -35,12 +35,14 @@ st.title("EDFファイルアップロード")
 uploaded_file = st.file_uploader("EDFファイルを選択してください", type=["edf"])
 
 if uploaded_file is not None:
-    st.write("ファイルを読み込んでいます...")
-    signals, labels = read_edf_file(uploaded_file)
-    st.write("ファイルの読み込みが完了しました。")
-    st.write("信号ラベル: ", labels)
-    st.write("信号データ: ", signals)
-
+    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+        tmp_file.write(uploaded_file.getvalue())
+        tmp_file.flush()
+        st.write("ファイルを読み込んでいます...")
+        signals, labels = read_edf_file(tmp_file.name)
+        st.write("ファイルの読み込みが完了しました。")
+        st.write("信号ラベル: ", labels)
+        st.write("信号データ: ", signals)
 
 
     
