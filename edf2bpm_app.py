@@ -17,6 +17,7 @@ st.title("EDFファイルから心拍数を表示")
 
 uploaded_file = st.file_uploader("EDFファイルを選択してください", type=["edf"])
 
+
 if uploaded_file is not None:
    with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
         tmp_file.write(uploaded_file.getvalue())
@@ -25,8 +26,12 @@ if uploaded_file is not None:
         #基本設定
         filename = tmp_file.name
         # 開始日時と終了日時
-        start_datetime = datetime(2023, 6, 5, 22, 7, 40)
-        end_datetime = datetime(2023, 6, 5, 22, 48, 1)
+        d = st.date_input(
+        "開始日時",datetime.date(2023, 6,7))
+        d_list = []
+
+        start_datetime = datetime(datetime.date, 22, 7, 40)
+        end_datetime = datetime(datetime.date, 22, 48, 1)
 
 
         file = pyedflib.EdfReader(filename)
