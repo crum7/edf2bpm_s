@@ -1,0 +1,8 @@
+streamlit
+pyedflib
+biosppy
+matplotlib.pyplot
+pandas
+japanize_matplotlib
+datetime
+scipy
