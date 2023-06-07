@@ -1,3 +1,4 @@
+from io import StringIO
 import streamlit as st
 import pyedflib
 import biosppy
@@ -20,13 +21,13 @@ BPS(Bit Per Second)1秒あたりでリサンプリングする!
 '''
 if uploaded_file:
     #基本設定
-    #filename = uploaded_file
+    filename =  StringIO(uploaded_file.getvalue().decode("utf-8"))
     # 開始日時と終了日時
     start_datetime = datetime(2023, 6, 5, 22, 7, 40)
     end_datetime = datetime(2023, 6, 5, 22, 48, 1)
 
 
-    file = pyedflib.EdfReader(uploaded_file)
+    file = pyedflib.EdfReader(filename)
 
     # ECGデータが含まれるチャンネルを特定
     def find_ecg_channel(file):
